@@ -1,0 +1,12 @@
+﻿clear && echo "If you don't see anything after this, it means that /etc/udev/rules.d/66-mirics.rules exists." && \
+echo "Delete it and try again!" && \
+[ ! -e "/etc/udev/rules.d/66-mirics.rules" ] && \
+wget -O ~/Downloads/mirics_udevrule https://raw.githubusercontent.com/dgarley/sdr/master/mirics_udevrule && \
+sudo cp ~/Downloads/mirics_udevrule /etc/udev/rules.d/66-mirics.rules && \
+sudo service udev restart &&  \
+rm ~/Downloads/mirics_udevrule && \
+sudo service udev status && \
+echo && echo "  *** YOUR NEW UDEV FILE IS:" && \
+ls -al /etc/udev/rules.d/66-mirics.rules && \
+echo && echo "  *** YOUR NEW UDEV RULE IS:" && \
+cat /etc/udev/rules.d/66-mirics.rules
